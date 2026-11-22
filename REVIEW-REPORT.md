@@ -7,7 +7,7 @@
 |---|---|
 | **Date** | 21 November 2026 |
 | **What was reviewed** | `review/before/EdeeGiftPoolBefore.sol` (46 lines), as sent in by the client |
-| **File fingerprint (SHA-256)** | `6245f6c8e1e1a799…` (the fixed version is in `src/`) |
+| **File fingerprint (SHA-256)** | `e5a5aa66346cb56f…` (the fixed version is in `src/`) |
 | **What it does** | Friends chip in towards one gift. If the goal is reached, the money goes to the recipient; if not, everyone takes their money back. |
 | **Result** | 6 issues found: 1 Critical, 1 High, 1 Medium, 3 Low, plus 6 notes. All fixed, and each fix is proven by a test. |
 
