@@ -1,0 +1,9 @@
+{
+  "extends": "solhint:recommended",
+  "rules": {
+    "func-visibility": ["warn", { "ignoreConstructors": true }],
+    "import-path-check": "off",
+    "gas-strict-inequalities": "off",
+    "gas-indexed-events": "off"
+  }
+}

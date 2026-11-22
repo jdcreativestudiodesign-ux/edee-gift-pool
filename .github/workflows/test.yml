@@ -1,0 +1,29 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          submodules: recursive
+
+      - uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: v1.10.0
+
+      - name: Check formatting
+        run: forge fmt --check src test
+
+      - name: Build
+        run: forge build --sizes
+
+      - name: Run tests
+        run: forge test
+
+      - name: Planted-bug checks
+        run: ./negative-controls.sh

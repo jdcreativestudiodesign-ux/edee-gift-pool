@@ -1,0 +1,61 @@
+INFO:Detectors:
+Detector: arbitrary-send-eth
+EdeeGiftPoolBefore.release() (EdeeGiftPoolBefore.sol#29-35) sends eth to arbitrary user
+	Dangerous calls:
+	- recipient.transfer(address(this).balance) (EdeeGiftPoolBefore.sol#34)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#functions-that-send-ether-to-arbitrary-destinations
+INFO:Detectors:
+Detector: reentrancy-eth
+Reentrancy in EdeeGiftPoolBefore.refund() (EdeeGiftPoolBefore.sol#37-45):
+	External calls:
+	- (ok,None) = msg.sender.call{value: amount}() (EdeeGiftPoolBefore.sol#42)
+	State variables written after the call(s):
+	- contributionOf[msg.sender] = 0 (EdeeGiftPoolBefore.sol#44)
+	EdeeGiftPoolBefore.contributionOf (EdeeGiftPoolBefore.sol#14) can be used in cross function reentrancies:
+	- EdeeGiftPoolBefore.contribute() (EdeeGiftPoolBefore.sol#23-27)
+	- EdeeGiftPoolBefore.contributionOf (EdeeGiftPoolBefore.sol#14)
+	- EdeeGiftPoolBefore.refund() (EdeeGiftPoolBefore.sol#37-45)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-1
+INFO:Detectors:
+Detector: tx-origin
+EdeeGiftPoolBefore.release() (EdeeGiftPoolBefore.sol#29-35) uses tx.origin for authorization: require(bool,string)(tx.origin == organiser,only organiser) (EdeeGiftPoolBefore.sol#30)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#dangerous-usage-of-txorigin
+INFO:Detectors:
+Detector: missing-zero-check
+EdeeGiftPoolBefore.constructor(address,uint256,uint256)._recipient (EdeeGiftPoolBefore.sol#16) lacks a zero-check on :
+		- recipient = _recipient (EdeeGiftPoolBefore.sol#18)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-zero-address-validation
+INFO:Detectors:
+Detector: timestamp
+EdeeGiftPoolBefore.refund() (EdeeGiftPoolBefore.sol#37-45) uses timestamp for comparisons
+	Dangerous comparisons:
+	- require(bool,string)(block.timestamp > deadline,too early) (EdeeGiftPoolBefore.sol#38)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#block-timestamp
+INFO:Detectors:
+Detector: solc-version
+Version constraint ^0.8.0 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)
+	- FullInlinerNonExpressionSplitArgumentEvaluationOrder
+	- MissingSideEffectsOnSelectorAccess
+	- AbiReencodingHeadOverflowWithStaticArrayCleanup
+	- DirtyBytesArrayToStorage
+	- DataLocationChangeInInternalOverride
+	- NestedCalldataArrayAbiReencodingSizeValidation
+	- SignedImmutables
+	- ABIDecodeTwoDimensionalArrayMemory
+	- KeccakCaching.
+It is used by:
+	- ^0.8.0 (EdeeGiftPoolBefore.sol#4)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity
+INFO:Detectors:
+Detector: low-level-calls
+Low level call in EdeeGiftPoolBefore.refund() (EdeeGiftPoolBefore.sol#37-45):
+	- (ok,None) = msg.sender.call{value: amount}() (EdeeGiftPoolBefore.sol#42)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#low-level-calls
+INFO:Detectors:
+Detector: immutable-states
+EdeeGiftPoolBefore.deadline (EdeeGiftPoolBefore.sol#10) should be immutable 
+EdeeGiftPoolBefore.goal (EdeeGiftPoolBefore.sol#9) should be immutable 
+EdeeGiftPoolBefore.organiser (EdeeGiftPoolBefore.sol#7) should be immutable 
+EdeeGiftPoolBefore.recipient (EdeeGiftPoolBefore.sol#8) should be immutable 
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#state-variables-that-could-be-declared-immutable
+INFO:Slither:EdeeGiftPoolBefore.sol analyzed (1 contracts with 102 detectors), 11 result(s) found

@@ -1,0 +1,33 @@
+[profile.default]
+src = "src"
+test = "test"
+libs = ["lib"]
+solc_version = "0.8.39"
+evm_version = "cancun"
+optimizer = true
+optimizer_runs = 200
+# The "before" file is deliberately flawed for the review (see REVIEW-REPORT.md, EG-03); its compiler
+# warning about `transfer` is expected, so it is hidden from normal builds.
+ignored_warnings_from = ["review/before"]
+remappings = [
+    "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+    "forge-std/=lib/forge-std/src/",
+]
+
+[fuzz]
+runs = 1000
+
+[invariant]
+# Newer Foundry checks all invariants of a contract in one shared campaign, so runs are set higher
+# to keep at least the depth that 256 runs per invariant used to give.
+runs = 1000
+depth = 50
+fail_on_revert = false
+
+[lint]
+# Reviewed, see REVIEW-REPORT.md ("Automated tools"): EdeeGiftPool's dates are measured in days, and a
+# validator can only shift a block's timestamp by seconds, so timestamp comparisons are safe here.
+exclude_lints = ["block-timestamp"]
+
+[fmt]
+line_length = 110

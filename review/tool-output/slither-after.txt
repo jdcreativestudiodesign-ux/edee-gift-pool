@@ -1,0 +1,33 @@
+Detector: arbitrary-send-eth
+EdeeGiftPool._send(address,uint256) (src/EdeeGiftPool.sol#167-176) sends eth to arbitrary user
+	Dangerous calls:
+	- (ok,None) = to.call{value: amount}() (src/EdeeGiftPool.sol#171)
+Detector: incorrect-equality
+EdeeGiftPool.contribute(uint256) (src/EdeeGiftPool.sol#97-118) uses a dangerous strict equality:
+	- received == 0 (src/EdeeGiftPool.sol#112)
+Detector: timestamp
+EdeeGiftPool.constructor(address,uint256,uint256,IERC20) (src/EdeeGiftPool.sol#83-92) uses timestamp for comparisons
+	Dangerous comparisons:
+	- recipient_ == address(0) || goal_ == 0 || deadline_ <= block.timestamp (src/EdeeGiftPool.sol#84)
+EdeeGiftPool.contribute(uint256) (src/EdeeGiftPool.sol#97-118) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp >= DEADLINE (src/EdeeGiftPool.sol#99)
+EdeeGiftPool.release() (src/EdeeGiftPool.sol#122-132) uses timestamp for comparisons
+	Dangerous comparisons:
+	- msg.sender != ORGANISER && block.timestamp < DEADLINE (src/EdeeGiftPool.sol#123)
+	- block.timestamp >= SAFETY_NET_AT (src/EdeeGiftPool.sol#126)
+EdeeGiftPool.refundsOpen() (src/EdeeGiftPool.sol#156-160) uses timestamp for comparisons
+	Dangerous comparisons:
+	- status != Status.Open || block.timestamp < DEADLINE (src/EdeeGiftPool.sol#158)
+	- totalRaised < GOAL || block.timestamp >= SAFETY_NET_AT (src/EdeeGiftPool.sol#159)
+Detector: low-level-calls
+Low level call in EdeeGiftPool._send(address,uint256) (src/EdeeGiftPool.sol#167-176):
+	- (ok,None) = to.call{value: amount}() (src/EdeeGiftPool.sol#171)
+Detector: naming-convention
+Variable EdeeGiftPool.ORGANISER (src/EdeeGiftPool.sol#31) is not in mixedCase
+Variable EdeeGiftPool.RECIPIENT (src/EdeeGiftPool.sol#33) is not in mixedCase
+Variable EdeeGiftPool.TOKEN (src/EdeeGiftPool.sol#35) is not in mixedCase
+Variable EdeeGiftPool.GOAL (src/EdeeGiftPool.sol#37) is not in mixedCase
+Variable EdeeGiftPool.DEADLINE (src/EdeeGiftPool.sol#39) is not in mixedCase
+Variable EdeeGiftPool.SAFETY_NET_AT (src/EdeeGiftPool.sol#41) is not in mixedCase
+INFO:Slither:. analyzed (9 contracts with 102 detectors), 13 result(s) found

@@ -1,0 +1,35 @@
+
+review/before/EdeeGiftPoolBefore.sol
+   4:1   error    Compiler version ^0.8.0 does not satisfy the ^0.8.24 semver requirement  compiler-version
+   6:1   warning  Missing @title tag in contract 'EdeeGiftPoolBefore'                      use-natspec
+   6:1   warning  Missing @author tag in contract 'EdeeGiftPoolBefore'                     use-natspec
+   6:1   warning  Missing @notice tag in contract 'EdeeGiftPoolBefore'                     use-natspec
+   7:5   warning  Missing @notice tag in variable 'organiser'                              use-natspec
+   8:5   warning  Missing @notice tag in variable 'recipient'                              use-natspec
+   9:5   warning  Missing @notice tag in variable 'goal'                                   use-natspec
+  10:5   warning  Missing @notice tag in variable 'deadline'                               use-natspec
+  11:5   warning  Missing @notice tag in variable 'released'                               use-natspec
+  13:5   warning  Missing @notice tag in variable 'totalRaised'                            use-natspec
+  14:5   warning  Missing @notice tag in variable 'contributionOf'                         use-natspec
+  23:5   warning  Missing @notice tag in function 'contribute'                             use-natspec
+  24:9   warning  GC: Use Custom Errors instead of require statements                      gas-custom-errors
+  29:5   warning  Missing @notice tag in function 'release'                                use-natspec
+  30:9   warning  GC: Use Custom Errors instead of require statements                      gas-custom-errors
+  30:17  warning  Avoid to use tx.origin                                                   avoid-tx-origin
+  31:9   warning  GC: Use Custom Errors instead of require statements                      gas-custom-errors
+  32:9   warning  GC: Use Custom Errors instead of require statements                      gas-custom-errors
+  37:5   warning  Missing @notice tag in function 'refund'                                 use-natspec
+  38:9   warning  GC: Use Custom Errors instead of require statements                      gas-custom-errors
+  39:9   warning  GC: Use Custom Errors instead of require statements                      gas-custom-errors
+  41:9   warning  GC: Use Custom Errors instead of require statements                      gas-custom-errors
+  43:9   warning  GC: Use Custom Errors instead of require statements                      gas-custom-errors
+
+✖ 23 problems (1 error, 22 warnings)
+
+┌──────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ ===>      NEW  500+ Formal Verification security checks → Free scan: https://bit.ly/dowsers     <=== │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ ===>  Smart contract Audits by Protofire  |  Book a https://calendly.com/vitaliy-chernov/30min  <=== │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
